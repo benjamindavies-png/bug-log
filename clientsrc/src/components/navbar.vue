@@ -31,13 +31,11 @@
         </li>
       </ul>
       <span class="navbar-text">
-        <button class="btn btn-info mx-2 align-self-center" v-if="$auth.isAuthenticated" @click="bugForm = true">REPORT</button>
-        <button class="btn btn-info" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        <button class="btn btn-info mx-2 align-self-center" @click="bugForm = true">REPORT</button>
       </span>
     </div>
   </nav>
-  <div v-if="bugForm && $auth.isAuthenticated" class="row border-bottom border-warning bg-info">
+  <div class="row border-bottom border-warning bg-info">
     <div class="col-12 mx-auto my-2">
       <form class="form-inline mx-auto text-center row" @submit.prevent="createBug">
         <div class="col-12">
@@ -61,36 +59,36 @@
 <script>
 import axios from "axios";
 import { getUserData } from "@bcwdev/auth0-vue";
-export default {
-  name: "Navbar",
-  data(){
-    return{
-      bugForm: false,
-      newBug:{
-        creatorEmail: this.$auth.user.email,
-        closed: false,
-      },
-    }
-  },
-  methods: {
-    async login() {
-      await this.$auth.loginWithPopup();
-      this.$store.dispatch("setBearer", this.$auth.bearer);
-      console.log("this.$auth.user: ");
-      console.log(this.$auth.user);
-      this.$store.dispatch("getProfile");
-    },
-    async logout() {
-      this.$store.dispatch("resetBearer");
-      await this.$auth.logout({ returnTo: window.location.origin });
-    },
-    createBug(){
-      this.$store.dispatch("createBug", this.newBug);
-      this.newBug = {creatorEmail: this.$auth.user.email, closed: false};
-      this.bugForm = false;
-    }
-  }
-};
+// export default {
+//   name: "Navbar",
+//   data(){
+//     return{
+//       bugForm: false,
+//       newBug:{
+//         creatorEmail: this.$auth.user.email,
+//         closed: false,
+//       },
+//     }
+//   },
+//   methods: {
+//     async login() {
+//       await this.$auth.loginWithPopup();
+//       this.$store.dispatch("setBearer", this.$auth.bearer);
+//       console.log("this.$auth.user: ");
+//       console.log(this.$auth.user);
+//       this.$store.dispatch("getProfile");
+//     },
+//     async logout() {
+//       this.$store.dispatch("resetBearer");
+//       await this.$auth.logout({ returnTo: window.location.origin });
+//     },
+//     createBug(){
+//       this.$store.dispatch("createBug", this.newBug);
+//       this.newBug = {creatorEmail: this.$auth.user.email, closed: false};
+//       this.bugForm = false;
+//     }
+//   }
+// };
 </script>
 
 <style>
