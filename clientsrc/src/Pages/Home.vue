@@ -8,7 +8,7 @@
 
         <div class="row my-4">
       <div class="col-10 mx-auto card shadow text-center py-1">
-        <small>You can view Bugs table without logging in.  However, to view details about/create/edit a bug report, add a note, or close a bug, you must log in.</small>
+        
       </div>
     </div>
 
@@ -18,24 +18,20 @@
           <div class="col-3 border text-center py-1">Title</div>
           <div class="col-4 border text-center py-1">Reported By</div>
           <div class="col-2 border text-center py-1">
-            <!-- TODO CREATE THE SORT FUNCTION AND @CLICK FOR STATUS -->
             Status
-            <!-- <i class="fas fa-sort pointer text-warning float-right" @click="sortStatus"></i> -->
             <small class="text-warning float-right pointer" @click="sortStatus">sort</small>
           </div>
           <div class="col-3 border text-center py-1">
-            <!-- TODO CREATE THE SORT FUNCTION AND @CLICK FOR MODIFIED DATE -->
             Last Modified
             <i class="fas fa-sort pointer text-warning float-right" @click="sortDate"></i>
           </div>
         </div>
-        <!--NOTE End of banner -->
 
         <div v-for="bug in bugs" :key="bug.id" :bugProp="bug">
           <router-link :to="{name: 'bug', params: {bugId: bug.id}}">
             <div class="row">
               <div class="col-3 border text-left py-1">{{bug.title}}</div>
-              <div id="bug-creator" class="col-4 border text-left py-1">{{bug.creatorEmail}}</div>
+              <div id="bug-creator" class="col-4 border text-left py-1">{{'test'}}</div>
               <div id="bug-status" class="text-success col-2 border text-center py-1">
                 <span v-if="bug.closed == false" class="text-success">OPEN</span><span v-else class="text-danger">CLOSED</span>
               </div>
@@ -50,12 +46,12 @@
           </router-link>
         </div>
 
-      </div> <!--NOTE end of card col-->
-    </div> <!--NOTE end of card row-->
+      </div> 
+    </div> 
 
 
 
-  </div> <!--NOTE end of container-->
+  </div>
 </template>
 
 <script>
